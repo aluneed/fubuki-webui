@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FubukiNodeService } from '../fubuki-node.service';
+import { FubukiNodeService } from '../fubuki/fubuki.service';
 import { Observable } from 'rxjs';
+import { NodeInfoListItem } from '../fubuki/types/NodeInfoListItem';
 
 @Component({
   selector: 'app-group-list',
@@ -20,10 +21,6 @@ export class GroupListComponent {
     this.groupList = this.fubukiNodeService.getGroupList();
   }
 
-  groupList!: Observable<any>;
-
-  getNodeMapValues(nodeMap: any): any {
-    return Object.values(nodeMap);
-  }
+  groupList!: Observable<NodeInfoListItem[]>;
 
 }

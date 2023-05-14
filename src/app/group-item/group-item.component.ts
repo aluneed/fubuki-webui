@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { FubukiNodeService } from '../fubuki-node.service';
+import { FubukiNodeService } from '../fubuki/fubuki.service';
 import { Observable } from 'rxjs';
 import { group } from '@angular/animations';
 import { ActivatedRoute } from '@angular/router';
+import { NodeInfo } from '../fubuki/types/NodeInfo';
+import { NodeInfoListItem } from '../fubuki/types/NodeInfoListItem';
+import { NodeStatus } from '../fubuki/types/NodeStatus';
 
 @Component({
   selector: 'app-group-item',
@@ -21,8 +24,6 @@ export class GroupItemComponent {
   ngOnInit(): void {
     const routeParams = this.route.snapshot.paramMap;
     this.path = routeParams.get('path')!;
-
-
     this.getNodeMap();
   }
 
@@ -31,10 +32,10 @@ export class GroupItemComponent {
   nodeColumns = ["name", "virtual_addr", "lan_udp_addr", "wan_udp_addr"]
 
   path: string = "";  
-  groupList: any;
-  groupInfo: any;
-  nodeMap: any;
-  nodeList!: any[];
+  groupList!: NodeInfoListItem[];
+  groupInfo!: NodeInfoListItem;
+  nodeMap!: Map<string, NodeStatus>;
+  nodeList!: NodeStatus[];
 
   getNodeMap(): void {
     let groupList = this.fubukiNodeService.getGroupList();
@@ -51,7 +52,7 @@ export class GroupItemComponent {
     });
   }
 
-  getNodeMapValues(nodeMap: any): any[] {
+  getNodeMapValues(nodeMap: Map<string, NodeStatus>): NodeStatus[] {
     return Object.values(nodeMap);
   }
 
