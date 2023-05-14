@@ -13,18 +13,15 @@ export class FubukiNodeService {
 
   }
 
-  groupColumns = ["group_name", "node_name", "addr", "server_addr", "server_is_connected"]
-  nodeColumns = ["name", "virtual_addr", "lan_udp_addr", "wan_udp_addr"]
-
   info!: NodeInfoListItem[];
 
-  getInfo() {
-    this.http.get('/info')
-      .subscribe(info => {
-        this.info = <NodeInfoListItem[]> info;
-        // console.log(this.info);
-        // console.log(Object.values(this.info[0]["node_map"]));
-      });
+  getInfo(): Observable<Object[]> {
+    return this.http.get('/info') as Observable<Object[]>;
+  }
+
+  getServerType(): Observable<string> {
+    https://stackoverflow.com/questions/58941004/unexpected-token-o-in-json-at-position-0-when-i-query-an-api
+    return this.http.get("/type", {responseType: "text"}) as Observable<string>;
   }
 
   getGroupList(): Observable<NodeInfoListItem[]> {
