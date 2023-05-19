@@ -28,17 +28,33 @@ export class InfoItemComponent {
     this.fubukiNodeService.getServerType().subscribe(serverType => {
       this.serverType = serverType;
       if(serverType === "node") {
-        this.groupColumns = ["group_name", "node_name", "addr", "server_addr", "server_is_connected"];
-        this.nodeColumns = ["name", "virtual_addr", "lan_udp_addr", "wan_udp_addr"]
+        this.basicGroupColumns = ["group_name", "node_name", "addr", "server_addr", "server_is_connected"];
+        this.basicNodeColumns = ["name", "virtual_addr", "lan_udp_addr", "wan_udp_addr"]
+        this.viewGroupColumns = [
+          "group_name", "node_name", "addr", "server_addr", "server_is_connected",
+          "mode", "server_udp_status", "server_udp_hc", "server_tcp_hc"
+        ];
+        this.viewNodeColumns = [
+          "name", "virtual_addr", "lan_udp_addr", "wan_udp_addr",
+          "mode", "allowed_ips", "udp_status", "hc"
+        ];
+        // JSON.stringify(this.viewGroupColumns);
       } else if(serverType === "server") {
-        this.groupColumns = ["name", "listen_addr", "address_range"];
-        this.nodeColumns = ["name", "virtual_addr", "lan_udp_addr", "wan_udp_addr"]
+        this.basicGroupColumns = ["name", "listen_addr", "address_range"];
+        this.basicNodeColumns = ["name", "virtual_addr", "lan_udp_addr", "wan_udp_addr"]
+        this.viewGroupColumns = ["name", "listen_addr", "address_range"];
+        this.viewNodeColumns = [
+          "name", "virtual_addr", "lan_udp_addr", "wan_udp_addr", 
+          "mode", "allowed_ips", "udp_status", "udp_heartbeat_cache", "tcp_heartbeat_cache"
+        ];
       }
     })
   }
 
-  groupColumns!: string[];
-  nodeColumns!: string[];
+  viewGroupColumns!: string[];
+  basicGroupColumns!: string[];
+  viewNodeColumns!: string[];
+  basicNodeColumns!: string[];
 
   path: string = "";  
   serverType!: string;
@@ -64,6 +80,10 @@ export class InfoItemComponent {
 
   getNodeMapValues(nodeMap: Map<string, NodeStatus>): NodeStatus[] {
     return Object.values(nodeMap);
+  }
+
+  toJsonString(obj: Object): string {
+    return JSON.stringify(obj);
   }
 
 }

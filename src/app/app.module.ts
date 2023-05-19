@@ -3,22 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainContainerComponent } from './main-container/main-container.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { InfoListComponent } from './info-list/info-list.component';
+import { InfoItemComponent } from './info-item/info-item.component';
+
 import { MatTableModule } from '@angular/material/table';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
-import { InfoListComponent } from './info-list/info-list.component';
 import { MatCardModule } from '@angular/material/card';
-import { InfoItemComponent } from './info-item/info-item.component';
+import { MatMenuModule } from '@angular/material/menu';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainContainerComponent,
     InfoListComponent,
     InfoItemComponent
   ],
@@ -32,7 +33,8 @@ import { InfoItemComponent } from './info-item/info-item.component';
     MatDividerModule,
     MatListModule,
     MatIconModule,
-    MatCardModule
+    MatCardModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]
