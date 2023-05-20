@@ -16,6 +16,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
+import {MatButtonModule} from '@angular/material/button';
+import { MatChipsModule } from '@angular/material/chips';
+import {MatTooltipModule} from '@angular/material/tooltip'
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { MatMenuModule } from '@angular/material/menu';
     MatListModule,
     MatIconModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    MatButtonModule,
+    MatChipsModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]
