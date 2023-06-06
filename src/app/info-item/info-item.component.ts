@@ -61,6 +61,12 @@ export class InfoItemComponent {
         ];
       }
     })
+
+    this.timer = setInterval(() => this.getNodeMap(), 10_000);
+  }
+
+  ngOnDestoy() {
+    clearInterval(this.timer);
   }
 
   viewGroupColumns!: string[];
@@ -69,6 +75,7 @@ export class InfoItemComponent {
   viewNodeColumns!: string[];
   basicNodeColumns!: string[];
   nodeHcColumns!: string[];
+  timer!: any;
 
   path: string = "";  
   serverType!: string;
